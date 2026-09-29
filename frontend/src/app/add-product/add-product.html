@@ -1,0 +1,66 @@
+<div class="add-product">
+
+  <h1>Add Product</h1>
+
+  <form (ngSubmit)="addProduct()">
+
+    <div class="form-group">
+      <label>Product Name</label>
+      <input
+        type="text"
+        name="productName"
+        [(ngModel)]="product.productName"
+        placeholder="Enter product name"
+        required>
+    </div>
+
+    <div class="form-group">
+      <label>Category</label>
+      <input
+        type="text"
+        name="category"
+        [(ngModel)]="product.category"
+        placeholder="Enter category"
+        required>
+    </div>
+
+    <div class="form-group">
+      <label>Price</label>
+      <input
+        type="number"
+        name="price"
+        [(ngModel)]="product.price"
+        placeholder="Enter price"
+        min="0"
+        required>
+    </div>
+
+    <div class="form-group">
+      <label>Quantity</label>
+      <input
+        type="number"
+        name="quantity"
+        [(ngModel)]="product.quantity"
+        placeholder="Enter quantity"
+        min="0"
+        required>
+    </div>
+
+    <div class="form-group">
+      <label>Minimum Stock</label>
+      <input
+        type="number"
+        name="minimumStock"
+        [(ngModel)]="product.minimumStock"
+        placeholder="Enter minimum stock"
+        min="0"
+        required>
+    </div>
+
+    <button type="submit">
+      Add Product
+    </button>
+
+  </form>
+
+</div>

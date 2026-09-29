@@ -1,0 +1,163 @@
+<div class="notifications-page">
+
+  <div class="page-header">
+
+    <div>
+      <h1>Notifications</h1>
+      <p>Inventory alerts that require your attention</p>
+    </div>
+
+    <button
+      type="button"
+      (click)="refreshNotifications()">
+      🔄 Refresh
+    </button>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- TOTAL ALERTS -->
+  <!-- ========================= -->
+
+  <div class="alert-summary">
+
+    <div class="summary-card">
+
+      <h3>Total Alerts</h3>
+
+      <span>
+        {{ totalAlerts }}
+      </span>
+
+    </div>
+
+    <div class="summary-card">
+
+      <h3>Low Stock</h3>
+
+      <span>
+        {{ lowStockProducts.length }}
+      </span>
+
+    </div>
+
+    <div class="summary-card">
+
+      <h3>Out of Stock</h3>
+
+      <span>
+        {{ outOfStockProducts.length }}
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- LOW STOCK ALERTS -->
+  <!-- ========================= -->
+
+  <section class="notification-section">
+
+    <h2>🟠 Low Stock Alerts</h2>
+
+    <div
+      class="notification-card low-stock"
+      *ngFor="let product of lowStockProducts">
+
+      <div class="notification-info">
+
+        <h3>
+          {{ product.productName }}
+        </h3>
+
+        <p>
+          Category:
+          <strong>{{ product.category }}</strong>
+        </p>
+
+        <p>
+          Current Quantity:
+          <strong>{{ product.quantity }}</strong>
+        </p>
+
+        <p>
+          Minimum Stock:
+          <strong>{{ product.minimumStock }}</strong>
+        </p>
+
+      </div>
+
+      <div class="status">
+        LOW STOCK
+      </div>
+
+    </div>
+
+
+    <div
+      class="empty-message"
+      *ngIf="lowStockProducts.length === 0">
+
+      ✅ No low-stock products.
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================= -->
+  <!-- OUT OF STOCK ALERTS -->
+  <!-- ========================= -->
+
+  <section class="notification-section">
+
+    <h2>🔴 Out of Stock Alerts</h2>
+
+    <div
+      class="notification-card out-of-stock"
+      *ngFor="let product of outOfStockProducts">
+
+      <div class="notification-info">
+
+        <h3>
+          {{ product.productName }}
+        </h3>
+
+        <p>
+          Category:
+          <strong>{{ product.category }}</strong>
+        </p>
+
+        <p>
+          Current Quantity:
+          <strong>{{ product.quantity }}</strong>
+        </p>
+
+        <p>
+          Minimum Stock:
+          <strong>{{ product.minimumStock }}</strong>
+        </p>
+
+      </div>
+
+      <div class="status">
+        OUT OF STOCK
+      </div>
+
+    </div>
+
+
+    <div
+      class="empty-message"
+      *ngIf="outOfStockProducts.length === 0">
+
+      ✅ No out-of-stock products.
+
+    </div>
+
+  </section>
+
+</div>

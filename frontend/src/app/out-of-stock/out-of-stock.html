@@ -1,0 +1,52 @@
+<div class="out-of-stock-page">
+
+  <h1>Out of Stock Products</h1>
+
+  <div class="table-container">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Current Quantity</th>
+          <th>Minimum Stock</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let product of products">
+
+          <td>{{ product.id }}</td>
+
+          <td>{{ product.productName }}</td>
+
+          <td>{{ product.category }}</td>
+
+          <td>₹{{ product.price }}</td>
+
+          <td>{{ product.quantity }}</td>
+
+          <td>{{ product.minimumStock }}</td>
+
+        </tr>
+
+        <tr *ngIf="products.length === 0">
+
+          <td colspan="6">
+            No out of stock products found
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

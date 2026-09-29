@@ -1,0 +1,240 @@
+<div class="dashboard-page">
+
+  <!-- ========================= -->
+  <!-- HEADER -->
+  <!-- ========================= -->
+
+  <div class="dashboard-header">
+
+    <div>
+      <h1>Inventory Dashboard</h1>
+      <p>Overview of your inventory</p>
+    </div>
+
+    <button
+      type="button"
+      (click)="refreshDashboard()">
+      🔄 Refresh
+    </button>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- SUMMARY CARDS -->
+  <!-- ========================= -->
+
+  <div class="dashboard-cards">
+
+    <!-- Total Products -->
+
+    <div class="dashboard-card">
+
+      <div class="card-icon">
+        📦
+      </div>
+
+      <div>
+
+        <h3>Total Products</h3>
+
+        <p>
+          {{ dashboard.totalProducts }}
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- Total Quantity -->
+
+    <div class="dashboard-card">
+
+      <div class="card-icon">
+        📊
+      </div>
+
+      <div>
+
+        <h3>Total Quantity</h3>
+
+        <p>
+          {{ dashboard.totalQuantity }}
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- Low Stock -->
+
+    <div class="dashboard-card">
+
+      <div class="card-icon">
+        🟠
+      </div>
+
+      <div>
+
+        <h3>Low Stock</h3>
+
+        <p>
+          {{ dashboard.lowStockProducts }}
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- Out of Stock -->
+
+    <div class="dashboard-card">
+
+      <div class="card-icon">
+        🔴
+      </div>
+
+      <div>
+
+        <h3>Out of Stock</h3>
+
+        <p>
+          {{ dashboard.outOfStockProducts }}
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- Inventory Value -->
+
+    <div class="dashboard-card">
+
+      <div class="card-icon">
+        💰
+      </div>
+
+      <div>
+
+        <h3>Inventory Value</h3>
+
+        <p>
+          ₹{{ dashboard.totalInventoryValue | number:'1.0-0' }}
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- CATEGORY INVENTORY -->
+  <!-- ========================= -->
+
+  <div class="category-section">
+
+    <div class="section-header">
+
+      <div>
+
+        <h2>Category-wise Inventory</h2>
+
+        <p>
+          Inventory distribution across categories
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- Category Cards -->
+
+    <div class="category-grid">
+
+      <div
+        class="category-card"
+        *ngFor="let category of categoryInventory">
+
+        <div class="category-header">
+
+          <h3>
+            {{ category.category }}
+          </h3>
+
+          <span>
+            📦
+          </span>
+
+        </div>
+
+
+        <div class="category-details">
+
+          <div>
+
+            <span>
+              Products
+            </span>
+
+            <strong>
+              {{ category.productCount }}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Total Quantity
+            </span>
+
+            <strong>
+              {{ category.totalQuantity }}
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- Simple quantity bar -->
+
+        <div class="quantity-bar">
+
+          <div
+            class="quantity-progress"
+            [style.width.%]="
+              dashboard.totalQuantity > 0
+                ? (category.totalQuantity / dashboard.totalQuantity) * 100
+                : 0
+            ">
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- No category data -->
+
+      <div
+        class="empty-category"
+        *ngIf="categoryInventory.length === 0">
+
+        No category inventory data available.
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
